@@ -15,6 +15,7 @@ public class Merge{
     //mergesortH()
     merge(data, copy);
   }
+  //Need to fix merge -  right now it only works if both halves are pre-sorted
   private static void merge(int[] data, int[] copy){
     int second = data.length / 2;
     int first = 0;
@@ -40,5 +41,13 @@ public class Merge{
       counter++;
     }
   }
-  //public static
+  public static void main(String[] args){
+    int[] first = {1,123,14444,999999,2,18,90,1000000000};
+    int[] copy = {0,0,0,0,0,0,0,0};
+    merge(first, copy);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+  }
 }
