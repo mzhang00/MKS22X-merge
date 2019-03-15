@@ -16,7 +16,29 @@ public class Merge{
     merge(data, copy);
   }
   private static void merge(int[] data, int[] copy){
-    int middle = data.length / 2;
-
+    int second = data.length / 2;
+    int first = 0;
+    int counter = 0;
+    while (first < (data.length / 2) || second < data.length){
+      if (first == (data.length / 2)){
+        copy[counter] = data[second];
+        second++;
+      }else{
+        if (second == data.length){
+          copy[counter] = data[first];
+          first++;
+        }else{
+          if (data[first] >= data[second]){
+            copy[counter] = data[second];
+            second++;
+          }else{
+            copy[counter] = data[first];
+            first++;
+          }
+        }
+      }
+      counter++;
+    }
   }
+  //public static
 }
