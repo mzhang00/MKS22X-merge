@@ -11,12 +11,19 @@ public class Merge{
     if (start == end){
       return;
     }
-    mergesortH(data, copy, oldstart, middle, start, middle);
-    mergesortH(data, copy, middle + 1, oldend, middle + 1, end);
-    merge(data, copy, start, end);
-    int[] temp = data;
-    data = copy;
-    copy = temp;
+    mergesortH(copy, data, oldstart, middle, start, middle);
+    mergesortH(copy, data, middle + 1, oldend, middle + 1, end);
+    merge(copy, data, start, end);
+
+    /*
+    for (int i : data){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+*/
+    //int[] temp = data;
+    //data = copy;
+    //copy = temp;
   }
   //Need to fix merge -  right now it only works if both halves are pre-sorted
   private static void merge(int[] data, int[] copy, int lo, int hi){
@@ -47,12 +54,14 @@ public class Merge{
     }
   }
   public static void main(String[] args){
-    
+            
     int[] first = {1,2,14444,999999,2,18,90,1000000000};
     int[] copy1 = {0,0,0,0,0,0,0,0};
     int[] copy = {5,1,4,7,2,6,3};
-    int[] merged = {5,1,4,7,2,6,3};
+    int[] merged = {5,1,4,7,2,6,3,8};
 
+    //testing merge is below
+  /*
     merge(merged, copy, 0, 1);
     for (int i : copy){
       System.out.print("" + i + " ");
@@ -76,7 +85,7 @@ public class Merge{
       System.out.print("" + i + " ");
     }
     System.out.println();
-*/
+
     merge(copy, merged, 0, 3);
     for (int i : merged){
       System.out.print("" + i + " ");
@@ -94,30 +103,13 @@ public class Merge{
       System.out.print("" + i + " ");
     }
     System.out.println();
-    
-    //testing merge is below
+  */
 
-  /*
-    merge(merged, copy, 0, 1);
-    merge(merged, copy, 2, 3);
-    merge(merged, copy, 4, 5);
-    merge(merged, copy, 6, 7);
-    for (int i : copy){
+    mergesort(merged);
+    for (int i : merged){
       System.out.print("" + i + " ");
     }
     System.out.println();
 
-    merge(copy, merged, 0, 3);
-    merge(copy, merged, 4, 7);
-    for (int i : copy){
-      System.out.print("" + i + " ");
-    }
-    System.out.println();*/
-  /*
-    mergesort(first);
-    for (int i : copy){
-      System.out.print("" + i + " ");
-    }
-    System.out.println();*/
   }
 }
