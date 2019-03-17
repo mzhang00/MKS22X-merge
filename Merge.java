@@ -4,50 +4,103 @@ public class Merge{
     for (int i = 0; i < data.length; i++){
       temp[i] = data[i];
     }
-    mergesortH(data, temp, 0, data.length - 1);
+    mergesortH(data, temp, 0, data.length - 1, 0 , data.length - 1);
   }
-  private static void mergesortH(int[] data, int[] copy, int start, int end){
-    int middle = data.length / 2;
+  private static void mergesortH(int[] data, int[] copy, int start, int end, int oldstart, int oldend){
+    int middle = ((end - start) / 2) + start;
     if (start == end){
       return;
     }
-    //mergesortH()
-    //mergesortH()
-    merge(data, copy);
+    mergesortH(data, copy, oldstart, middle, start, middle);
+    mergesortH(data, copy, middle + 1, oldend, middle + 1, end);
+    merge(data, copy, start, end);
+    int[] temp = data;
+    data = copy;
+    copy = temp;
   }
   //Need to fix merge -  right now it only works if both halves are pre-sorted
-  private static void merge(int[] data, int[] copy){
-    int second = data.length / 2;
-    int first = 0;
+  private static void merge(int[] data, int[] copy, int lo, int hi){
+    /*
+    if (hi - lo == 0){
+      copy[hi] = data[hi];
+      return;
+    }
+    if (hi - lo == 1){
+      if (data[hi] < data[lo]){
+        copy[hi] = data[lo];
+        copy[lo] = data[hi];
+      }else{
+        copy[hi] = data[hi];
+        copy[lo] = data[lo];
+      }
+      return;
+    }
+    int middle = ((hi - lo)/2) + lo;
+    merge(data, copy, lo, middle);
+    merge(data, copy, middle + 1, hi);
+    */
+    
+    int second = ((hi - lo) / 2) + lo + 1;
+    int copyofsecond = second;
+    int first = lo;
     int counter = 0;
-    while (first < (data.length / 2) || second < data.length){
-      if (first == (data.length / 2)){
+    while (first < copyofsecond || second < hi + 1){
+      if (first >= copyofsecond){
         copy[counter] = data[second];
         second++;
       }else{
-        if (second == data.length){
+        if (second >= hi + 1){
           copy[counter] = data[first];
           first++;
+        }
+      }
+      if (first < copyofsecond && second < hi + 1){   
+        if (data[first] >= data[second]){
+          copy[counter] = data[second];
+          second++;
         }else{
-          if (data[first] >= data[second]){
-            copy[counter] = data[second];
-            second++;
-          }else{
-            copy[counter] = data[first];
-            first++;
-          }
+          copy[counter] = data[first];
+          first++;
         }
       }
       counter++;
     }
   }
   public static void main(String[] args){
-    int[] first = {1,123,14444,999999,2,18,90,1000000000};
+    
+    int[] first = {1,2,14444,999999,2,18,90,1000000000};
     int[] copy = {0,0,0,0,0,0,0,0};
-    merge(first, copy);
+    int[] merged = {3,2,4,5,6,7,1,8};
+
+    merge(first, copy, 0, 7);
     for (int i : copy){
       System.out.print("" + i + " ");
     }
     System.out.println();
+
+    //testing merge is below
+
+  /*
+    merge(merged, copy, 0, 1);
+    merge(merged, copy, 2, 3);
+    merge(merged, copy, 4, 5);
+    merge(merged, copy, 6, 7);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+
+    merge(copy, merged, 0, 3);
+    merge(copy, merged, 4, 7);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();*/
+  /*
+    mergesort(first);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();*/
   }
 }
