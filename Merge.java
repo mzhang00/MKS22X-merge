@@ -20,30 +20,10 @@ public class Merge{
   }
   //Need to fix merge -  right now it only works if both halves are pre-sorted
   private static void merge(int[] data, int[] copy, int lo, int hi){
-    /*
-    if (hi - lo == 0){
-      copy[hi] = data[hi];
-      return;
-    }
-    if (hi - lo == 1){
-      if (data[hi] < data[lo]){
-        copy[hi] = data[lo];
-        copy[lo] = data[hi];
-      }else{
-        copy[hi] = data[hi];
-        copy[lo] = data[lo];
-      }
-      return;
-    }
-    int middle = ((hi - lo)/2) + lo;
-    merge(data, copy, lo, middle);
-    merge(data, copy, middle + 1, hi);
-    */
-    
     int second = ((hi - lo) / 2) + lo + 1;
     int copyofsecond = second;
     int first = lo;
-    int counter = 0;
+    int counter = lo;
     while (first < copyofsecond || second < hi + 1){
       if (first >= copyofsecond){
         copy[counter] = data[second];
@@ -69,15 +49,52 @@ public class Merge{
   public static void main(String[] args){
     
     int[] first = {1,2,14444,999999,2,18,90,1000000000};
-    int[] copy = {0,0,0,0,0,0,0,0};
-    int[] merged = {3,2,4,5,6,7,1,8};
+    int[] copy1 = {0,0,0,0,0,0,0,0};
+    int[] copy = {5,1,4,7,2,6,3};
+    int[] merged = {5,1,4,7,2,6,3};
 
-    merge(first, copy, 0, 7);
+    merge(merged, copy, 0, 1);
     for (int i : copy){
       System.out.print("" + i + " ");
     }
     System.out.println();
 
+    merge(merged, copy, 2, 3);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+    
+    merge(merged, copy, 4,5);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+    /*
+    merge(merged, copy, 6, 7);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+*/
+    merge(copy, merged, 0, 3);
+    for (int i : merged){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+    
+    merge(copy, merged, 4, 6);
+    for (int i : merged){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+
+    merge(merged, copy, 0, 6);
+    for (int i : copy){
+      System.out.print("" + i + " ");
+    }
+    System.out.println();
+    
     //testing merge is below
 
   /*
