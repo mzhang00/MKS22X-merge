@@ -6,6 +6,7 @@ public class Merge{
     }
     mergesortH(data, temp, 0, data.length - 1, 0 , data.length - 1);
   }
+
   private static void mergesortH(int[] data, int[] copy, int start, int end, int oldstart, int oldend){
     int middle = ((end - start) / 2) + start;
     if (start == end){
@@ -14,18 +15,8 @@ public class Merge{
     mergesortH(copy, data, oldstart, middle, start, middle);
     mergesortH(copy, data, middle + 1, oldend, middle + 1, end);
     merge(copy, data, start, end);
-
-    /*
-    for (int i : data){
-      System.out.print("" + i + " ");
-    }
-    System.out.println();
-*/
-    //int[] temp = data;
-    //data = copy;
-    //copy = temp;
   }
-  //Need to fix merge -  right now it only works if both halves are pre-sorted
+
   private static void merge(int[] data, int[] copy, int lo, int hi){
     int second = ((hi - lo) / 2) + lo + 1;
     int copyofsecond = second;
@@ -53,13 +44,17 @@ public class Merge{
       counter++;
     }
   }
+
   public static void main(String[] args){
             
+    //arrays are below
+  /*
     int[] first = {1,2,14444,999999,2,18,90,1000000000};
     int[] copy1 = {0,0,0,0,0,0,0,0};
     int[] copy = {5,1,4,7,2,6,3};
-    int[] merged = {5,1,4,7,2,6,3,8};
-
+    int[] merged = {5,1,4,7,2,6,3};
+  */
+  
     //testing merge is below
   /*
     merge(merged, copy, 0, 1);
@@ -105,11 +100,13 @@ public class Merge{
     System.out.println();
   */
 
-    mergesort(merged);
-    for (int i : merged){
+    //testing mergesort is below
+  /*
+    mergesort(first);
+    for (int i : first){
       System.out.print("" + i + " ");
     }
     System.out.println();
-
+  */
   }
 }
