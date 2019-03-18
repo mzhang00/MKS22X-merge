@@ -34,7 +34,7 @@ public class Merge{
           first++;
         }
       }
-      if (first < copyofsecond && second < hi + 1){   
+      if (first < copyofsecond && second < hi + 1){
         if (data[first] >= data[second]){
           copy[counter] = data[second];
           second++;
@@ -48,7 +48,7 @@ public class Merge{
   }
 
   public static void main(String[] args){
-            
+
     //arrays are below
   /*
     int[] first = {1,2,14444,999999,2,18,90,1000000000};
@@ -70,7 +70,7 @@ public class Merge{
       System.out.print("" + i + " ");
     }
     System.out.println();
-    
+
     merge(merged, copy, 4,5);
     for (int i : copy){
       System.out.print("" + i + " ");
@@ -88,7 +88,7 @@ public class Merge{
       System.out.print("" + i + " ");
     }
     System.out.println();
-    
+
     merge(copy, merged, 4, 6);
     for (int i : merged){
       System.out.print("" + i + " ");
@@ -110,6 +110,7 @@ public class Merge{
     }
     System.out.println();
   */
+
     System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
     int[]MAX_LIST = {1000000000,500,10};
     for(int MAX : MAX_LIST){
