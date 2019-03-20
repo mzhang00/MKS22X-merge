@@ -10,13 +10,17 @@ public class Merge{
   }
 
   private static void mergesortH(int[] data, int[] copy, int start, int end, int oldstart, int oldend){
-    int middle = ((end - start) / 2) + start;
-    if (start == end){
-      return;
+    if (data.length < 27){
+      insertionSort(data, 0, data.length);
+    }else{
+      int middle = ((end - start) / 2) + start;
+      if (start == end){
+        return;
+      }
+      mergesortH(copy, data, oldstart, middle, start, middle);
+      mergesortH(copy, data, middle + 1, oldend, middle + 1, end);
+      merge(copy, data, start, end);
     }
-    mergesortH(copy, data, oldstart, middle, start, middle);
-    mergesortH(copy, data, middle + 1, oldend, middle + 1, end);
-    merge(copy, data, start, end);
   }
 
   private static void merge(int[] data, int[] copy, int lo, int hi){
