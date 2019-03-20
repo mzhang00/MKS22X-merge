@@ -143,4 +143,18 @@ public class Merge{
       System.out.println();
     }
   }
+
+  private static void insertionSort(int[] ary, int lo, int hi){
+    int temp;
+    int counter;
+    for (int i = lo + 1; i < hi; i++){
+      temp = ary[i];
+      counter = i - 1;
+      while (counter >= lo && ary[counter] > temp){
+        ary[counter + 1] = ary[counter];
+        counter--;
+      }
+      ary[counter + 1] = temp;
+    }
+  }
 }
